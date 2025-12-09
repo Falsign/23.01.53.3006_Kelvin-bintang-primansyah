@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Produk</title>
+</head>
+<body>
+    <h1>Daftar Produk</h1>
+
+    <ul id="produk"></ul>
+
+    <script>
+        fetch("http://localhost/api/produk.php")
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("produk");
+
+                data.forEach(p => {
+                    let item = document.createElement("li");
+                    item.innerHTML = p.nama_produk + 
+                        " | Harga: " + p.harga + 
+                        " | Stok: " + p.stok;
+                    list.appendChild(item);
+                });
+            });
+    </script>
+</body>
+</html>
